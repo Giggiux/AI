@@ -79,10 +79,10 @@ public class Solution implements Iterable {
 
     @Override
     public String toString() {
-        String sol = this.cost + " Node Order:";
-        String delim = " ";
+        String sol = "";
+        String delim = "";
         for (int index : indices) {
-            sol = sol + delim + String.valueOf(index);
+            sol = sol + delim + String.valueOf(index+1);
             delim = " ";
         }
         return sol;

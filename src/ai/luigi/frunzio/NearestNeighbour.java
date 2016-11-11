@@ -8,30 +8,22 @@ import java.util.stream.IntStream;
  * Created by giggiux on 10/27/16.
  */
 public class NearestNeighbour implements Solver {
-    Instance instance;
+    static int nn_ls = 20;
+    final Instance instance;
+    final int dimension;
 
     public NearestNeighbour(Instance instance) {
 
         this.instance = instance;
+        this.dimension = instance.getDimension();
     }
 
-    public Instance getInstance() {
-        return instance;
-    }
 
-    public void setInstance(Instance instance) {
-        this.instance = instance;
-    }
-
-    /**
-     *
-     * @return Objective Value
-     */
     @Override
     public Solution getSolution() { return null; }
 
-    public Solution getSolution(Integer startingNodeIndex) {
-        Set<Integer> notYetVisited = IntStream.rangeClosed(0, instance.getDimension()-1).boxed().collect(Collectors.toSet());
+    Solution getSolution(Integer startingNodeIndex) {
+        Set<Integer> notYetVisited = IntStream.rangeClosed(0, dimension-1).boxed().collect(Collectors.toSet());
 
         Solution ret = new Solution(instance);
 
