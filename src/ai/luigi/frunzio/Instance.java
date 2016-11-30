@@ -52,7 +52,7 @@ public class Instance {
     public void read() throws Exception {
         try {
             BufferedReader reader =
-                    Files.newBufferedReader(FileSystems.getDefault().getPath(".", filename),
+                    Files.newBufferedReader(FileSystems.getDefault().getPath(filename),
                             Charset.defaultCharset());
             String line;
             State state = State.DESCRIPTION;
@@ -128,15 +128,8 @@ public class Instance {
     }
 
     static void swap2(long v[], int v2[], int i, int j)
-    /*
-     * FUNCTION: auxiliary routine for sorting an integer array
-     * INPUT: two arraya, two indices
-     * OUTPUT: none
-     * (SIDE)EFFECTS: elements at position i and j of the two arrays are swapped
-     */
     {
         long tmp;
-
         tmp = v[i];
         v[i] = v[j];
         v[j] = tmp;
@@ -145,14 +138,7 @@ public class Instance {
         v2[j] = tmp2;
     }
 
-    static void sortArrays(long v[], int v2[], int left, int right)
-    /*
-     * FUNCTION: recursive routine (quicksort) for sorting one array; second
-     * arrays does the same sequence of swaps
-     * INPUT: two arrays, two indices
-     * OUTPUT: none
-     * (SIDE)EFFECTS: elements at position i and j of the two arrays are swapped
-     */
+    static void sortArrays(long v[], int v2[], int left, int right) //Quicksort
     {
         int k, last;
 

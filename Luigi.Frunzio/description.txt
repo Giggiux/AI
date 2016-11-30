@@ -1,0 +1,19 @@
+I implemented an ACO with 2-opt local search.
+Since the classic 2-opt was too slow in order to have a lot of iterations,
+I used some techniques that I found online to speed it up:
+ - Instead of searching through all the nodes, it search only for a gain through the 20 nearest neighbors of a node
+ - Don't look bits: as described at page 318 of this pdf, http://www.cs.ubc.ca/~hoos/SLS-Internal/ch8.pdf
+ - It search for the first improvement using the successor of a node, if found I search for the first improvement using the predecessor of a node (if not found use the ones found before) [I don't really know why this makes the algorithm faster, but the best (faster) implementation of the algorithm that I found did that, and the results were slightly better]
+ - When found a solution that have some gain, swaps the shortest "path" between the inner and the outer of 4 nodes.
+
+The ACO it's not really an ACO, because I found an error the last day of the submission:
+  when I update the pheromone and the total_probability, the code I wrote doesn't create a symmetric matrix because
+  I didn't know that in java `a[i][j] = a[j][i] = x;` was different from `a[i][j] = x; a[j][i] =x;`, so it updates the
+  pheromone "lately" on `a[i][j]` (one iteration later). But I left it like that because I have found the seed for that, not for the fixed version
+ 
+ The ACO per se 
+	if exploits: as first thing search for the 20 Nearest Neighbors, if they're all visited, search through all the
+	nodes, using the formula written on the slides
+	if explores: see if can find randomly a city between the 20 Nearest Neighbors, else it exploit
+The general algorithm is inspired by a C implementation I found online by Thomas Stützle: for example the parameters rho/beta/q_0 etc.. are taken from that one, also the idea of how to iterate only through the Nearest Neighbors instead all N nodes.
+http://iridia.ulb.ac.be/~mdorigo/ACO/downloads/ACOTSP-1.03.tgz

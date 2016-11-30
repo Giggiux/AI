@@ -15,5 +15,4 @@ public class Timer {
     {
         return (System.currentTimeMillis() - startTime) / 1000.0;
     }
-
 }

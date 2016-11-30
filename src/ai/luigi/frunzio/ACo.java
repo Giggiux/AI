@@ -4,10 +4,7 @@ package ai.luigi.frunzio;
  * Created by giggiux on 10/28/16.
  */
 public class ACo {
-     /* use fixed radius search in the 20 nearest neighbours */
-
     static int seed;
-    static double max_time = 180.0;
 
     static void init() {
         Ants.pheromone = new double[Main.cities][Main.cities];
@@ -19,6 +16,7 @@ public class ACo {
     static void start() {
         Timer.start_timers();
 
+        double max_time = 180.0;
 
         while (!(Timer.elapsed_time() >= max_time)) {
             for (int k = 0; k < Ants.n_ants; k++) {
@@ -50,7 +48,7 @@ public class ACo {
 
             }
 
-            int iteration_best_ant = Ants.find_best(); /* iteration_best_ant is a global variable */
+            int iteration_best_ant = Ants.find_best();
 
             if (Ants.ants[iteration_best_ant].tour_length < Ants.best_ant.tour_length) {
                 System.arraycopy(Ants.ants[iteration_best_ant].tour, 0, Ants.best_ant.tour, 0, Ants.best_ant.tour.length);
@@ -59,8 +57,6 @@ public class ACo {
 
             Ants.global_pheromone_update(Ants.best_ant);
         }
-//        System.out.println(ACo.seed + " " + Ants.best_ant.tour_length);
-
     }
 
 }
